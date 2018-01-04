@@ -1,7 +1,7 @@
 <template>
   <div ref="cover" :class="{'m-cover f-page':true,'z-enter': coverClass.enter, 'z-leave': coverClass.leave}">
     <div class="bgback"></div>
-    <div class="light bgback f-animOpac"></div>
+    <div class="light f-page f-animOpac"></div>
     <div class="titlebox">
       <h1 v-for="item in boxMsg" :class="{ 'title':true, 'title-1': item.is1, 'title-2': item.is2 }"></h1>
     </div>
@@ -70,6 +70,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+@import url(../../static/css/common.scss);
 .m-cover {
     background-color: #332c2e;
     visibility: hidden;

@@ -1,6 +1,6 @@
 <template>
     <div class="m-app f-page">
-      <router-view/>
+      <router-view ref="nav" id="nav" v-touch:up.stop="prevPage()" v-touch:down.stop="nextPage()"/>
       <div class="m-btmbar">
         <a href="javascript:;" class="btn">{{btnTitle}}</a>
       </div>
@@ -18,13 +18,37 @@ export default {
   mounted: function () {
   },
   created: function () {
-    console.log("dsad")
+    console.log("dsad");
+  },
+  methods: {
+    prevPage: function () {
+      var that = this;
+      return function ( event, start, end ) {
+        that.$refs.nav.$el.classList.add("z-leave");
+        // console.log( that.$refs.nav.$el.classList );
+        setTimeout(function() {
+          that.$router.push({ path: "/m-p01"})
+        }, 300);
+     
+      }
+    },
+    nextPage: function () {
+      var that = this;
+      return function ( event, start, end ) {
+      that.$refs.nav.$el.classList.add("z-leave");
+        setTimeout(function() {
+          that.$router.push({ path: "/"})
+        }, 300);
+      }
+    }
+  },
+  beforeDestroy: function () {
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  .f-page {
+  .m-app {
       font-family: 'Avenir', Helvetica, Arial, sans-serif;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -35,7 +59,6 @@ export default {
       width: 100%;
       height: 100%;
       overflow: hidden;
-      // background: #eee;
       touch-action: none;
       .m-btmbar {
           position: fixed;
