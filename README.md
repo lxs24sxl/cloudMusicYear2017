@@ -1,6 +1,7 @@
 # Vue版-2017网易云音乐陪你温暖同行
 
 > 网易云音乐2017年度h5页面-vue实现
+> 技术实现：vue/vuex/vue-router/vue-directive-touch/
 
 ## 目的
 ### 在空闲的时间重新学习并使用vue.js的各种api
