@@ -6,16 +6,19 @@ import router from './router'
 import touch from 'vue-directive-touch'
 import Vuex from 'vuex'
 
-import data from '../static/data/data.js'
+
 
 Vue.use( touch )
 Vue.use( Vuex )
 
+
+import data from '../static/data/data.js'
 const store = new Vuex.Store({
 	state: {
+		curRouter: 0,
 		data: {
 			userId: data.userId,
-			nickname: data.data,
+			nickname: data.nickname,
 			avatarUrl: data.avatarUrl,
 			hasAvatar: data.hasAvatar,
 			lyrics: [{
@@ -195,7 +198,10 @@ const store = new Vuex.Store({
 		}
 	},
 	mutations: {
-
+		// 更新路由
+		_update_curRouter ( state, index ) {
+			state.curRouter = index;
+		}
 	},
 	action: {
 

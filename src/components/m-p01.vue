@@ -21,52 +21,21 @@
 
 				<div class="listbox">
 					<div class="list">
-						<div class="itm">
+						<div class="itm" v-for="item in lyrics">
 							<div class="lyric f-thide">
-								<span class="s-xsRed">心</span>
-								不定是变的 是凉的 是炽热
+								{{ item[ 0 ]}}
+								<span class="s-xsRed">{{ item[ 1 ]}}</span>
+								{{ item[ 2 ]}}
 							</div>
 							<div class="artist f-thide">
-								—王博文《一课一颗》
-							</div>
-						</div>
-						<div class="itm">
-							<div class="lyric f-thide">
-								可我的
-								<span class="s-xsRed">心</span>
-								, 我的家
-							</div>
-							<div class="artist f-thide">
-								—海龟先生《男孩别哭》
-							</div>
-						</div>
-						<div class="itm">
-							<div class="lyric f-thide">
-								我把
-								<span class="s-xsRed">心</span>停泊进你的臂弯
-							</div>
-							<div class="artist f-thide">
-								>—群星《习惯》
-							</div>
-						</div>
-						<div class="itm">
-							<div class="lyric f-thide">
-								我的
-								<span class="s-xsRed">心</span>
-								开始想你了
-							</div>
-							<div class="artist f-thide">
-								—张学友《我真的受伤了》
+								{{ item[ 3 ] }}
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
-	
-		
-
+		{{ lyrics }}
 		<div class="rock f-animR100 rock-3">
 			<div class="c"></div>
 		</div>
@@ -87,8 +56,47 @@ export default {
 			}
 		}
 	},
+	computed: {
+		lyrics () {
+			// 声明一个只读的常量 歌单
+			const lyricsArr = this.$store.state.data.lyrics;
+			let newLyricsArr= [];
+			// Es5的方法 遍历歌单
+			lyricsArr.forEach(( value, index ) => {
+				// 创建临时数组，存储截取的字符串
+				let temp = new Array(),
+					// 局部变量,当前歌单 
+					curLyrics = lyricsArr[ index ],
+					// 局部变量,当前歌单的一部分歌词 
+					curLyric = curLyrics.lyric,
+					// 局部变量,歌词中 关键词( 心 ) 的位置   
+					wordIndex = curLyric.indexOf( curLyrics.word ),
+					// 连接歌手和歌名
+					artist = "—".concat( curLyrics.artistName, "《", curLyrics.songName, "》" );
+
+				// 向数组存放截取的字符串
+				// 1.存放关键词前面的字符串
+				temp.push( curLyric.slice( 0, wordIndex ) );
+				// 2.存放关键词
+				temp.push( curLyric.slice( wordIndex, wordIndex + 1));
+				// 3.存放关键词后面的字符串
+				temp.push( curLyric.slice( wordIndex + 1 ) );
+				// 3.存放歌手信息
+				temp.push( artist );
+				// 把临时变量存放在新的数组里面
+				newLyricsArr.push( temp );
+			});
+			return newLyricsArr;
+		}
+	},
+	created () {
+
+	},
 	mounted() {
 		var that = this;
+		// 修改当前路由
+		this.$store.commit( "_update_curRouter", 2 );
+		// 进入动画
 		setTimeout(function() {
 			that.boxClass.enter = true;
 		}, 300);
@@ -136,7 +144,7 @@ export default {
 	    height: 70px;
 	    .c {
 	    	&:before {
-    			background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p01/rock_1.png?8a740bd…);
+    			background-image: url(../../static/images/p01/rock_1.png);
 			}
 	    }
 	}
@@ -147,7 +155,7 @@ export default {
 	    height: 79px;
 	    .c {
 	    	&:before {
-			    background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p01/rock_2.png);
+			    background-image: url(../../static/images/p01/rock_2.png);
 			}
 	    }
 	}
@@ -158,7 +166,7 @@ export default {
 	    height: 35px;
 	    .c {
 	    	&:before {
-	    		background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p01/rock_3.png?17d3b26…);
+	    		background-image: url(../../static/images/p01/rock_3.png);
 	    	}
 	    }
 	}
@@ -169,7 +177,7 @@ export default {
 	    height: 117px;
 	    .c {
 	    	&:before {
-	    		background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p01/rock_4.png?7ad9bab…);
+	    		background-image: url(../../static/images/p01/rock_4.png);
 
 	    	}
 	    }
@@ -193,14 +201,14 @@ export default {
 	.mountain {
 		width: 100%;
 		height: 100%;
-		background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p01/mountain.png?a036d93…);
+		background-image: url(../../static/images/p01/mountain.png);
 		background-size: cover;
 		-webkit-transform-origin: center top;
 		transform-origin: center top;
 		-webkit-transform: scale(0.8);
 		transform: scale(0.8);
 		.word-33 {
-		    background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p01/word/33.png?c694103…);
+		    background-image: url(../../static/images/p01/word/33.png);
 		}
 		.word {
 		    position: absolute;
@@ -219,7 +227,7 @@ export default {
 		        height: 24px;
 		        line-height: 24px;
 		        text-align: center;
-		        background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p01/border.png?09d2d1c…);
+		        background-image: url(../../static/images/p01/border.png);
 		        background-size: cover;
 		        .man {
 		            position: absolute;
@@ -227,7 +235,7 @@ export default {
 		            right: -5px;
 		            width: 19px;
 		            height: 41px;
-		            background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p01/man.png?1b77412…);
+		            background-image: url(../../static/images/p01/man.png);
 		            background-size: cover;
 		        }
 		    }

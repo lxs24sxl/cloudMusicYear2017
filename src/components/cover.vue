@@ -7,7 +7,7 @@
     </div>
     <div class="nickname">
       <div class="line">
-        <i v-for="item in nicknameMsg" :class="{ 'r': item.isR }">{{ item.text }}</i>
+        <i v-for="item in nicknameMsgs" :class="{ 'r': item.isR }">{{ item.text }}</i>
       </div>
     </div>
     <div class="card">
@@ -34,11 +34,6 @@ export default {
         {title:"陪你温暖同行", is1: true, is2:false },
         {title: "这一年,网易云音乐", is1:false, is2:true}
       ],
-      nicknameMsg: [
-        { text: "L", isR: true },
-        { text: "晓", isR: false },
-        { text: "舜", isR: false },
-      ],
       "primaryText" : {
         text1: "立即",
         text2: "查看"
@@ -49,19 +44,50 @@ export default {
       }
     }
   },
+  computed: {
+    // 封装nickname数组
+    nicknameMsgs () {
+      var nickname = this.$store.state.data.nickname.split(''),       // 字符串转数组
+          nicknameMsg = [],                                           // 创建临时数组
+          that = this;                                                // 
+      // 遍历姓名数组
+      nickname.forEach(function ( value, index ) {
+        let object = new Object();
+        // 添加text属性,并赋值字符串
+        object.text = value;
+        // 添加isR属性,并赋值布尔值
+        object.isR = that.checknum( value );
+        // 添加对象到数组
+        nicknameMsg.push( object );
+      });
+      return nicknameMsg;
+    }
+  },
   methods: {
+    // 离开页面
     doLeave: function () {
       this.coverClass.leave = true;
       var that = this;
       setTimeout(function() {
-        that.$router.push( { name:"Night"} );
-      }, 1000);
+        that.$store.commit( "_update_curRouter", 1 );
+      }, 1000 );
+    },
+    // 检查是否为字母
+    checknum: function (value) {
+      var Regx = /^[A-Za-z0-9]*$/;
+      if (Regx.test(value)) {               // 当字符串为字母,返回true
+        return true;
+      }else {                               // 当字符串为非字母,返回false
+        return false;
+      }
     }
   },
   mounted () {
     var that = this;
+    // 修改当前路由
+    this.$store.commit( "_update_curRouter", 0 );
+    // 添加进入动画
     setTimeout(function () {
-      // that.$refs.cover.classList.add("z-enter");
       that.coverClass.enter = true;
     }, 200 );
   }

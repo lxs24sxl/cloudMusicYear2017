@@ -24,9 +24,9 @@
 		<div class="content">
 			<p class="u-para">这一年里</p>
 			<p class="u-para u-para-1">
-				你
+				TA
 				一共在云村听了
-				<span class="s-xsRed f-xs18">1301</span>
+				<span class="s-xsRed f-xs18">{{ playSongCount }}</span>
 				首歌
 			</p>
 			<p class="u-para u-para-8">
@@ -34,13 +34,13 @@
 			</p>
 			<p class="u-para u-para-1">
 				喜欢在
-				<span class="s-xsRed">晚上</span>
+				<span class="s-xsRed">{{ playSongTimeOfDay }}</span>
 				听歌
 			</p>
 			<div>
 				<p class="u-para u-para-8">
 					TA习惯
-					<span class="s-xsRed">默默</span>
+					<span class="s-xsRed">{{ style }}</span>
 					地听
 				</p>
 				<p class="u-para u-para-1">
@@ -62,8 +62,22 @@ export default {
 			}
 		}
 	},
-	created() {
+  computed: {
+    playSongCount() {
+      return this.$store.state.data.playSongCount;
+    },
+    playSongTimeOfDay() {
+      return this.$store.state.data.playSongTimeOfDay;
+    },
+    style() {
+      return this.$store.state.data.style == "unknown"? "默默": "高调";
+    }
+  },
+	mounted () {
 		var that = this;
+    // 修改当前路由
+    this.$store.commit( "_update_curRouter", 1 );
+    // 进入动画
 		setTimeout(function() {
 		  that.nightClass.enter = true;
 		}, 50);
@@ -130,7 +144,7 @@ export default {
     	position: absolute;
     	width: 7px;
     	height: 7px;
-    	background-image: url(//s3.music.126.net/nact/s/client/images/year2017/common/star.png?95051d9…);
+    	background-image: url(../../static/images/common/star.png);
     	background-size: cover;
     	opacity: .2;
     	-webkit-animation: 2s ease-in infinite alternate glow;
@@ -141,7 +155,7 @@ export default {
 	    top: -19px;
 	    width: 40px;
 	    height: 19px;
-	    background-image: url(//s3.music.126.net/nact/s/client/images/year2017/common/meteor.png?33473f4…);
+	    background-image: url(../../static/images/common/meteor.png);
 	    background-size: cover;
 	    -webkit-animation: 2s ease-in infinite meteor;
 	    animation: 2s ease-in infinite meteor;
@@ -178,7 +192,7 @@ export default {
 	    	left: 0;
 	    	right: 0;
 	    	bottom: 0;
-	    	background-image:url(//s3.music.126.net/nact/s/client/images/year2017/p02_night/building_6.png?1e3a289…);
+	    	background-image:url(../../static/images/p02_night/building_6.png);
 	    	background-size:cover;
 		}
 	}
@@ -186,27 +200,27 @@ export default {
 		left: 0;
 		width: 241px;
 		height: 145px;
-		background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p02_night/building_5.png?56e5f25…);
+		background-image: url(../../static/images/p02_night/building_5.png);
 	}
 	.building-4 {
 	    right: 0;
 	    width: 262px;
 	    height: 61px;
-	    background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p02_night/building_4.png?a1dffb0…);
+	    background-image: url(../../static/images/p02_night/building_4.png);
 	}
 	.building-3 {
 	    display: none;
 	    right: 125px;
 	    width: 53px;
 	    height: 102px;
-	    background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p02_night/building_3.png?0673fb5…);
+	    background-image: url(../../static/images/p02_night/building_3.png);
 	}
 	.building-1 {
 	    bottom: 20px;
 	    right: 0;
 	    width: 38px;
 	    height: 119px;
-	    background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p02_night/building_1.png?549e519…);
+	    background-image: url(../../static/images/p02_night/building_1.png);
 	}
 	.moon {
 		position: absolute;
@@ -214,7 +228,7 @@ export default {
 		top: 65px;
 		width: 146px;
 		height: 193px;
-		background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p02_night/moon.png?91937bc896f8ac7485ad313a3ee9f2c2);
+		background-image: url(../../static/images/p02_night/moon.png);
 		background-size: cover;
 		-webkit-transform-origin: right top;
 		transform-origin: right top;
@@ -226,7 +240,7 @@ export default {
 		    left: 60px;
 		    width: 34px;
 		    height: 302px;
-		    background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p02_night/swing.png?8c87349…);
+		    background-image: url(../../static/images/p02_night/swing.png);
 		    background-size: cover;
 		    -webkit-transform-origin: right 0;
 		    transform-origin: right 0;
@@ -238,7 +252,7 @@ export default {
 		        left: 0;
 		        width: 60px;
 		        height: 90px;
-		        background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p02_night/man_repeat.png?7da242c…);
+		        background-image: url(../../static/images/p02_night/man_repeat.png);
 		        -webkit-animation: man-swing 6s steps(1) infinite;
 		        animation: man-swing 6s steps(1) infinite;
 		        -webkit-transform-origin: 0 0;
@@ -262,7 +276,7 @@ export default {
     .night-2 {
         padding-bottom: 85.2%;
         &:before {
-            background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p02_night/night_2.png?750258f…);
+            background-image: url(../../static/images/p02_night/night_2.png);
         }
     }
     .night {
@@ -285,7 +299,7 @@ export default {
     .night-1 {
         padding-bottom: 70.666667%;
         &:before {
-            background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p02_night/night_1.png?fc03c11…);
+            background-image: url(../../static/images/p02_night/night_1.png);
         }
     }
 }

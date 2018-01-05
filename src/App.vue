@@ -1,6 +1,6 @@
 <template>
     <div class="m-app f-page">
-      <router-view ref="nav" id="nav" v-touch:up.stop="prevPage()" v-touch:down.stop="nextPage()"/>
+      <router-view ref="nav" id="nav" v-touch:up.stop="nextPage()" v-touch:down.stop="prevPage()" v-touch:tap.stop="nextPage()" />
       <div class="m-btmbar">
         <a href="javascript:;" class="btn">{{btnTitle}}</a>
       </div>
@@ -12,37 +12,85 @@ export default {
   name: 'app',
   data() {
     return {
-      btnTitle: "查看我的年度总结"
+      index: 0,
+      timer: null,
+      isTimeOut: true,
+      btnTitle: "查看我的年度总结",
+      routerList: [
+        { index: 1, path: '/', name: 'Cover' },
+        { index: 2, path: '/night', name: "Night" },
+        { index: 3, path: '/m-p01', name: "mP01"},
+        { index: 4, path: '/m-p03', name: "mP03"}
+      ]
+    }
+  },
+  computed: {
+    // 当前路由的下标
+    curIndex() {
+        return this.$store.state.curRouter;
+    },
+    // 记录当前routerList的长度
+    routerLen() {
+      return this.routerList.length;
     }
   },
   mounted: function () {
   },
   created: function () {
-    console.log("dsad");
   },
   methods: {
-    prevPage: function () {
-      var that = this;
-      return function ( event, start, end ) {
-        that.$refs.nav.$el.classList.add("z-leave");
-        // console.log( that.$refs.nav.$el.classList );
-        setTimeout(function() {
-          that.$router.push({ path: "/m-p01"})
-        }, 300);
-     
-      }
-    },
     nextPage: function () {
       var that = this;
       return function ( event, start, end ) {
-      that.$refs.nav.$el.classList.add("z-leave");
-        setTimeout(function() {
-          that.$router.push({ path: "/"})
-        }, 300);
+        // 记录当前路由
+        let index = that.curIndex ;
+        // 当页面不处于最后一个页面、不处于第一个页面时且处于暂停状态
+        if ( index < that.routerLen - 1 && index != 0 && that.isTimeOut ) {
+          // 下一个路由
+          index = that.curIndex + 1;
+          // 为本页面路由添加离开动画
+          that.$refs.nav.$el.classList.add( "z-leave" );
+            // 修改当前路由
+          that.$store.commit( "_update_curRouter", index );
+        } 
+      }
+    },
+    prevPage: function () {
+      var that = this;
+      return function ( event, start, end ) {
+        // 记录当前路由
+        let index = that.curIndex;
+        // 当页面不属于第一个页面时且处于暂停状态
+        if ( index >= 1 && that.isTimeOut ) {
+          // 上一个路由
+          index = that.curIndex - 1;
+          // 为本页面路由添加离开动画
+          that.$refs.nav.$el.classList.add( "z-leave" );
+          // 修改当前路由
+          that.$store.commit( "_update_curRouter", index );
+        } 
       }
     }
   },
-  beforeDestroy: function () {
+  watch:{
+    curIndex: {
+      handler ( curVal, oldVal ) {
+        clearTimeout( this.timer );
+        var that = this;
+        console.log( "当前路由的下标:" + curVal );
+        if ( oldVal != curVal ) {
+          // 记录非暂停状态
+          that.isTimeOut = false;
+          // 跳转路由
+          that.timer = setTimeout(function() {
+            // 添加路由
+            that.$router.push({ path: that.routerList[ curVal ].path })
+            // 记录暂停状态
+            that.isTimeOut = true;
+          }, 300);
+        }
+      }
+    }
   }
 }
 </script>
@@ -83,7 +131,7 @@ export default {
   .m-app {
       height: auto;
       bottom: 45px;
-      background: url(//s3.music.126.net/nact/s/client/images/year2017/common/background_white.png?e162bde…) no-repeat;
+      background: url(../static/images/common/background_white.png) no-repeat;
       background-size: cover;
   }
 

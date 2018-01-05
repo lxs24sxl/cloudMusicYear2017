@@ -54,6 +54,9 @@ export default {
 	},
 	mounted() {
 		var that = this;
+    // 修改当前路由
+    this.$store.commit( "_update_curRouter", 3 );
+    // 进入动画
 		setTimeout(function() {
 			that.boxClass.enter = true;
 		}, 300);
@@ -88,19 +91,19 @@ export default {
 	    	left: 5px;
 	    	width: 20px;
 	    	height: 165px;
-	    	background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p03/ripple.png?e850181…);
+	    	background-image: url(../../static/images/p03/ripple.png);
 	    	background-size: cover;
 	    }
 	}
 	.wave2-2 {
 	    width: 375px;
 	    height: 199px;
-	    background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p03/wave_4.png?c475e9e…);
+	    background-image: url(../../static/images/p03/wave_4.png);
 	}
 	.wave2-1 {
 	    width: 375px;
 	    height: 241px;
-	    background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p03/wave_3.png?916ee8e…);
+	    background-image: url(../../static/images/p03/wave_3.png);
 	}
 	.circle {
 	    position: absolute;
@@ -113,7 +116,7 @@ export default {
 	    	display: block;
 	    	width: 100%;
 	    	height: 100%;
-	    	background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p03/circle.png?96409ee…);
+	    	background-image: url(/../../static/images/p03/circle.png);
 	    	background-size: cover;
 	    }
 	}
@@ -182,7 +185,7 @@ export default {
         right: -2px;
         width: 113px;
         height: 381px;
-        background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p03/splash_repeat.png?18bd56c…);
+        background-image: url(../../static/images/p03/splash_repeat.png);
         -webkit-transform-origin: right bottom;
         transform-origin: right bottom;
         -webkit-transform: scale(0.5);
@@ -196,7 +199,7 @@ export default {
         right: 5px;
         width: 85px;
         height: 111px;
-        background-image: url(//s3.music.126.net/nact/s/client/images/year2017/p03/man_repeat.png?761d02e…);
+        background-image: url(../../static/images/p03/man_repeat.png);
         -webkit-transform-origin: right bottom;
         transform-origin: right bottom;
         -webkit-transform: scale(0.5);
