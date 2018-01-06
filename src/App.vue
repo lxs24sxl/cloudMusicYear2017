@@ -4,6 +4,7 @@
       <div class="m-btmbar">
         <a href="javascript:;" class="btn">{{btnTitle}}</a>
       </div>
+      <!-- <audio src="../static/01-bgm.mp3" autoplay loop> -->
     </div>
 </template>
 
@@ -107,11 +108,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url(../static/css/common.css);
-  .m-app {
-      font-family: 'Avenir', Helvetica, Arial, sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+.m-app {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: auto;
+    bottom: 45px;
+    background: url(../static/images/common/background_white.png) no-repeat;
+    background-size: cover;
+    .f-page {
       position: absolute;
       top: 0;
       left: 0;
@@ -120,33 +125,27 @@ export default {
       height: 100%;
       overflow: hidden;
       touch-action: none;
-      .m-btmbar {
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          right: 0;
+    }
+    .m-btmbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        z-index: 200;
+        .btn {
+          display: block;
           width: 100%;
+          height: 45px;
+          background: #d33a31;
+          color: #fff;
+          font-size: 17px;
           text-align: center;
-          z-index: 200;
-          .btn {
-            display: block;
-            width: 100%;
-            height: 45px;
-            background: #d33a31;
-            color: #fff;
-            font-size: 17px;
-            text-align: center;
-            line-height: 45px;
-          }
-      }
-  }
-  .m-app {
-      height: auto;
-      bottom: 45px;
-      background: url(../static/images/common/background_white.png) no-repeat;
-      background-size: cover;
-  }
-
+          line-height: 45px;
+        }
+    }
+}
 @media (min-height: 724px) {
   .f-page {
     bottom: 79px;

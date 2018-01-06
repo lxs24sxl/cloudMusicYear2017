@@ -8,12 +8,12 @@
 		<div class="star star-4"></div>
 		<div class="meteor meteor-1"></div>
 		<div class="meteor meteor-2"></div>
-		<div class="building f-animB100p building-6"></div>
-		<div class="building f-animB100p building-5"></div>
-		<div class="building f-animB100p building-4"></div>
-		<div class="building f-animB100p building-3"></div>
-		<div class="building f-animB100p building-2"></div>
-		<div class="building f-animB100p building-1"></div>
+		<div class="building building-6 f-animB100"></div>
+		<div class="building building-5 f-animB100"></div>
+		<div class="building building-4 f-animB100"></div>
+		<div class="building building-3 f-animB100"></div>
+		<div class="building building-2 f-animB100"></div>
+		<div class="building building-1 f-animB100"></div>
 		<div class="moonbox f-page f-animT100">
 			<div class="moon">
 				<div class="swing">
@@ -86,7 +86,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import url(../../static/css/common.css);
 .m-p02 {
     visibility: hidden;
 }
@@ -321,35 +320,6 @@ export default {
 		    transform: none;
 		}
 	}
-}
-/* 流星坠落 */
-@-webkit-keyframes meteor {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-  }
-  40% {
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translate(400px, 190px);
-            transform: translate(400px, 190px);
-  }
-}
-@keyframes meteor {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate(0, 0);
-            transform: translate(0, 0);
-  }
-  40% {
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: translate(400px, 190px);
-            transform: translate(400px, 190px);
-  }
 }
 /* 灯光晃动 */
 @-webkit-keyframes chair-light {
