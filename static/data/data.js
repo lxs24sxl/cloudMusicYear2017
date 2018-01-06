@@ -3,7 +3,7 @@ var data = {
 	"data": {
 		"userId": "0DD312CAD32CD5BFB6709D15FCADD64E",
 		"nickname": "L晓舜",
-		"avatarUrl": "http://p1.music.126.net/mix7u2_VepLw3eIf46k9cw==/18658712324049648.jpg",
+		"avatarUrl": "../images/common/avatar.jpg",
 		"hasAvatar": true,
 		"lyrics": [{
 			"songId": 491943138,
@@ -72,7 +72,7 @@ var data = {
 		"createRadioSubCount": null,
 		"annualArtistId": 5781,
 		"annualArtistName": "薛之谦",
-		"annualArtistImgUrl": "http://p1.music.126.net/cmky1_hu0S0vfFr6U_03Bg==/3427177755493494.jpg",
+		"annualArtistImgUrl": "../iamges/common/xzqAvatar.jpg",
 		"annualArtistPlayCount": 121,
 		"annualArtistSongToplist": [{
 			"songId": 468517654,
@@ -177,8 +177,8 @@ var data = {
 			"artistName": "JAEFOREAL/蜡笔大Boom",
 			"playCount": 20
 		}],
-		"endVideoUrl": "http://sv2.music.126.net/20180118223812/9bd3c3a1127cb21d080672fad0307fd3/vodkgeyttp8/Mzk4MjI3MzM=_6cffa18f5f89254e80218b30cab4d6ae.mp4",
-		"endVideoCoverUrl": "http://p3.music.126.net/XlfM-aNXHzLTt5UXrxyeSA==/18601537720850451.jpg"
+		"endVideoUrl": "../video/Mzk4MjI3MzM%3D_6cffa18f5f89254e80218b30cab4d6ae.mp4",
+		"endVideoCoverUrl": "../images/video/video_bg.jpg"
 	}
 }
 

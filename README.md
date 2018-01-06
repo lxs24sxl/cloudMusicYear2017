@@ -1,7 +1,6 @@
 # Vue版-2017网易云音乐陪你温暖同行
 
-> 网易云音乐2017年度h5页面-vue实现  
-> 技术实现：vue/vuex/vue-router/vue-directive-touch/
+> 网易云音乐2017年度h5页面-vue实现
 
 ## 目的
 ### 在空闲的时间重新学习并使用vue.js的各种api
@@ -26,7 +25,9 @@ npm run build --report
 
 ## 开发进度
 ### 2018-01-06
-处理cover/night/m-p01的数据绑定
+1.处理cover/night/m-p01的数据绑定
+
+2.整合样式文件和添加路由
 
 ### 2018-01-05
 添加m-p01和m-p02页面及动画

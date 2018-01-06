@@ -14,7 +14,7 @@
 			<div class="mountain">
 				<div class="word word-33 word-w1">
 					<div class="count">
-						<span class="s-xsRed">724次</span>
+						<span class="s-xsRed">{{ keywordCount }}次</span>
 						<div class="man"></div>
 					</div>
 				</div>
@@ -35,7 +35,6 @@
 				</div>
 			</div>
 		</div>
-		{{ lyrics }}
 		<div class="rock f-animR100 rock-3">
 			<div class="c"></div>
 		</div>
@@ -81,12 +80,15 @@ export default {
 				temp.push( curLyric.slice( wordIndex, wordIndex + 1));
 				// 3.存放关键词后面的字符串
 				temp.push( curLyric.slice( wordIndex + 1 ) );
-				// 3.存放歌手信息
+				// 4.存放歌手信息
 				temp.push( artist );
 				// 把临时变量存放在新的数组里面
 				newLyricsArr.push( temp );
 			});
 			return newLyricsArr;
+		},
+		keywordCount () {
+			return this.$store.state.data.keywordCount;
 		}
 	},
 	created () {
@@ -105,7 +107,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url(../../static/css/common.scss);
 .m-p01 {
 	visibility: hidden;
 	opacity: 0;
@@ -293,38 +294,6 @@ export default {
 	    -webkit-transition-duration: 1.5s;
 	    transition-duration: 1.5s;
 	}
-	.f-animOpac {
-	    opacity: 1;
-	    -webkit-transition: opacity .5s;
-	    transition: opacity .5s;
-	}
-	.f-animL100 {
-	    opacity: 1;
-	    -webkit-transform: translateX(0);
-	    transform: translateX(0);
-	    -webkit-transition: opacity .5s, -webkit-transform .8s;
-	    transition: opacity .5s, -webkit-transform .8s;
-	    transition: transform .8s, opacity .5s;
-	    transition: transform .8s, opacity .5s, -webkit-transform .8s;
-	}   
-	.f-animB100 {
-	    opacity: 1;
-	    -webkit-transform: translateY(0);
-	    transform: translateY(0);
-	    -webkit-transition: opacity .5s, -webkit-transform .8s;
-	    transition: opacity .5s, -webkit-transform .8s;
-	    transition: transform .8s, opacity .5s;
-	    transition: transform .8s, opacity .5s, -webkit-transform .8s;
-	}
-	.f-animR100 {
-	    opacity: 1;
-	    -webkit-transform: translateX(0);
-	    transform: translateX(0);
-	    -webkit-transition: opacity .5s, -webkit-transform .8s;
-	    transition: opacity .5s, -webkit-transform .8s;
-	    transition: transform .8s, opacity .5s;
-	    transition: transform .8s, opacity .5s, -webkit-transform .8s;
-	}
 }
     
 .m-p01.z-enter {
@@ -341,35 +310,6 @@ export default {
     			transition-delay: .8s;
     		}
     	}
-    }
-}
-.z-leave {
-	.f-animR100 {
-    	opacity: 0;
-   		-webkit-transform: translateX(100px);
-    	transform: translateX(100px);
-    	-webkit-transition: opacity .3s, -webkit-transform .3s;
-    	transition: opacity .3s, -webkit-transform .3s;
-    	transition: transform .3s, opacity .3s;
-    	transition: transform .3s, opacity .3s, -webkit-transform .3s;
-    }
-    .f-animB100 {
-        opacity: 0;
-        -webkit-transform: translateY(100px);
-        transform: translateY(100px);
-        -webkit-transition: opacity .3s, -webkit-transform .3s;
-        transition: opacity .3s, -webkit-transform .3s;
-        transition: transform .3s, opacity .3s;
-        transition: transform .3s, opacity .3s, -webkit-transform .3s;
-    }
-    .f-animL100 {
-        opacity: 0;
-        -webkit-transform: translateX(-100px);
-        transform: translateX(-100px);
-        -webkit-transition: opacity .3s, -webkit-transform .3s;
-        transition: opacity .3s, -webkit-transform .3s;
-        transition: transform .3s, opacity .3s;
-        transition: transform .3s, opacity .3s, -webkit-transform .3s;
     }
 }
 .m-p01.z-leave {

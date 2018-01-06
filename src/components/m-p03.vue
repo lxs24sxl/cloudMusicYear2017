@@ -1,11 +1,11 @@
 <template>
 	<div :class="{'m-p03 f-page':true, 'z-enter': boxClass.enter,'z-leave': boxClass.leave}">
 		<div class="wave1 wave1-2">
-			<img class="pic" src="//s3.music.126.net/nact/s/client/images/year2017/p03/wave_2.png?bde3f4069f7bc4289ff0c6c5741b39cf">
+			<img class="pic" src="../../static/images/p03/wave_2.png">
 			<div class="ripple"></div>
 		</div>
 		<div class="wave1 wave1-1">
-			<img src="//s3.music.126.net/nact/s/client/images/year2017/p03/wave_1.png?47c9ba8df010097db8c0da36a6c7bc67" class="pic">
+			<img src="../../static/images/p03/wave_1.png" class="pic">
 		</div>
 		<div class="circle f-animR100"></div>
 		<div class="wave2 wave2-2"></div>
@@ -16,21 +16,21 @@
 		</div>
 		<div class="content">
 			<p class="u-para">
-				<span class="s-xsRed">4</span>
-				月<span class="s-xsRed">9</span>
+				<span class="s-xsRed">{{ replaySongDate.month }}</span>
+				月<span class="s-xsRed">{{ replaySongDate.date }}</span>
 				日大概是很特别的一天
 			</p>
 			<p class="u-para u-para-2">这一天里</p>
 			<p class="u-para u-para-2">
 				TA把
-				<span class="s-xsRed">薛之谦</span>
+				<span class="s-xsRed">{{ replayArtistName }}</span>
 				的
 				<span class="s-xsRed">
-				《动物世界》</span>
+				《{{ replaySongName }}》</span>
 			</p>
 			<p class="u-para u-para-2">
 				反复听了
-				<span class="s-xsRed f-fs18">18</span>
+				<span class="s-xsRed f-fs18">{{ replayCount }}</span>
 				次
 			</p>
 		</div>
@@ -48,9 +48,37 @@ export default {
 		}
 	},
 	computed: {
-		data () {
-			return this.$store.state.data.userId;
-		}
+    // 局部变量,存储data
+    userData () {
+      return this.$store.state.data;
+    },
+    // 日期,返回的是对象
+    replaySongDate () {
+      // 存储时间字符串, 20170409
+      let date = this.userData.replaySongDate,
+      // 创建临时对象
+          tempObj = {};
+      // 存放年
+      tempObj.year = parseInt( date.substr( 0, 4 ));
+      // 存放月
+      tempObj.month =  parseInt( date.substr( 4, 2 ));
+      // 存放日
+      tempObj.date =  parseInt( date.substr( 6 ));
+      // 返回临时对象
+      return tempObj;
+    },
+    // 重复播放的歌曲的歌手名
+    replayArtistName () {
+      return this.userData.replayArtistName;
+    },
+    // 重复播放的歌曲名
+    replaySongName () {
+      return this.userData.replaySongName;
+    },
+    // 重复播放歌曲的数量
+    replayCount () {
+      return this.userData.replayCount;
+    }
 	},
 	mounted() {
 		var that = this;
@@ -65,7 +93,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url(../../static/css/common.scss);
 .m-p03 {
     visibility: hidden;
     opacity: 0;
@@ -215,38 +242,6 @@ export default {
     	padding-right: 105px;
    		box-sizing: border-box;
 	}
-}
-.z-enter{
-	.f-animR100 {
-	    opacity: 1;
-	    -webkit-transform: translateX(0);
-	    transform: translateX(0);
-	    -webkit-transition: opacity .5s, -webkit-transform .8s;
-	    transition: opacity .5s, -webkit-transform .8s;
-	    transition: transform .8s, opacity .5s;
-	    transition: transform .8s, opacity .5s, -webkit-transform .8s;
-	}	
-	.f-animOpac {
-	    opacity: 1;
-	    -webkit-transition: opacity .5s;
-	    transition: opacity .5s;
-	}
-}
-.z-leave {
-	.f-animOpac {
- 	   opacity: 0;
- 	   -webkit-transition: opacity .3s;
-   		transition: opacity .3s;
-   	}
-   	.f-animR100 {
-   	    opacity: 0;
-   	    -webkit-transform: translateX(100px);
-   	    transform: translateX(100px);
-   	    -webkit-transition: opacity .3s, -webkit-transform .3s;
-   	    transition: opacity .3s, -webkit-transform .3s;
-   	    transition: transform .3s, opacity .3s;
-   	    transition: transform .3s, opacity .3s, -webkit-transform .3s;
-   	}
 }
 .m-p03.z-leave {
     opacity: 0;

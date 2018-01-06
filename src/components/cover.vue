@@ -96,7 +96,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
-@import url(../../static/css/common.scss);
 .m-cover {
     background-color: #332c2e;
     visibility: hidden;
@@ -321,11 +320,6 @@ export default {
   }
 }
 
-.z-enter .f-animOpac {
-    opacity: 1;
-    -webkit-transition: opacity .5s;
-    transition: opacity .5s;
-}
 @media (min-width: 360px) {
   .m-cover {
     .bgback {

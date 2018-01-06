@@ -86,30 +86,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import url(../../static/css/common.scss);
+@import url(../../static/css/common.css);
 .m-p02 {
     visibility: hidden;
-}
-.z-enter {
-	.f-animT100 {
-    opacity: 1;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    -webkit-transition: opacity .3s, -webkit-transform .8s;
-    transition: opacity .3s, -webkit-transform .8s;
-    transition: transform .8s, opacity .3s;
-    transition: transform .8s, opacity .3s, -webkit-transform .8s;
-	}	
-	.f-animB100p {
-		opacity: 1;
-		-webkit-transform: translateY( 0 );
-		transform: translateY( 0 );
-		-webkit-transition: opacity .5s, -webkit-transform .8s;
-		transition: opacity .5s, -webkit-transform .8s;
-		transition: transform .8s, opacity .5s;
-		transition: transform .8s, opacity .5s, -webkit-transform .8s;
-	}
-
 }
 .m-p02.z-night {
 	.star-1 {
@@ -325,26 +304,6 @@ export default {
 	.night {
     	-webkit-transition-delay: 0s;
     	transition-delay: 0s;
-	}
-}
-.z-leave {
-	.f-animB100p {
-    	opacity: 0;
-    	-webkit-transform: translateY(100%);
-    	transform: translateY(100%);
-    	-webkit-transition: opacity .3s, -webkit-transform .3s;
-    	transition: opacity .3s, -webkit-transform .3s;
-    	transition: transform .3s, opacity .3s;
-    	transition: transform .3s, opacity .3s, -webkit-transform .3s;
-	}
-	.f-animT100 {
-	    opacity: 0;
-	    -webkit-transform: translateY(-100px);
-	    transform: translateY(-100px);
-	    -webkit-transition: opacity .3s, -webkit-transform .3s;
-	    transition: opacity .3s, -webkit-transform .3s;
-	    transition: transform .3s, opacity .3s;
-	    transition: transform .3s, opacity .3s, -webkit-transform .3s;
 	}
 }
 .m-p02.z-leave {
