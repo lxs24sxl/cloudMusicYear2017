@@ -1,6 +1,6 @@
 <template>
     <div class="m-app f-page">
-      <router-view ref="nav" id="nav" v-touch:up.stop="nextPage()" v-touch:down.stop="prevPage()" v-touch:tap.stop="nextPage()" />
+      <router-view ref="nav" id="nav" v-touch:up.stop="nextPage()" v-touch:down.stop="prevPage()" v-touch:tap.stop="nextPage()"/>
       <div class="m-btmbar">
         <a href="javascript:;" class="btn">{{btnTitle}}</a>
       </div>

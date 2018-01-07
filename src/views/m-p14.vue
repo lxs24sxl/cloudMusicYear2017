@@ -15,8 +15,10 @@ export default {
 	},
 	mounted() {
 		var that = this;
-    	// 修改当前路由
-    	this.$store.commit( "_update_curRouter", 13 );
+		if ( this.$store.state.curRouter != 13 ) {
+    		// 修改当前路由
+    		this.$store.commit( "_update_curRouter", 13 );
+    	}
     	// 进入动画
 		setTimeout(function() {
 			that.boxClass.enter = true;

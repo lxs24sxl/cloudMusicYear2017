@@ -1,20 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Cover from '@/components/cover'
-import Night from "@/components/night"
-import mP01 from "@/components/m-p01"
-import mP03 from "@/components/m-p03"
-import mP04 from "@/components/m-p04"
-import mP05 from "@/components/m-p05"
-import mP06 from "@/components/m-p06"
-import mP07 from "@/components/m-p07"
-import mP08 from "@/components/m-p08"
-import mP09 from "@/components/m-p09"
-import mP10 from "@/components/m-p10"
-import mP12 from "@/components/m-p12"
-import mP13 from "@/components/m-p13"
-import mP14 from "@/components/m-p14"
-import video from "@/components/video"
+import Cover from '@/views/cover'
+import Night from "@/views/night"
+import mP01 from "@/views/m-p01"
+import mP03 from "@/views/m-p03"
+import mP04 from "@/views/m-p04"
+import mP05 from "@/views/m-p05"
+import mP06 from "@/views/m-p06"
+import mP07 from "@/views/m-p07"
+import mP08 from "@/views/m-p08"
+import mP09 from "@/views/m-p09"
+import mP10 from "@/views/m-p10"
+import mP12 from "@/views/m-p12"
+import mP13 from "@/views/m-p13"
+import mP14 from "@/views/m-p14"
+import video from "@/views/video"
 
 Vue.use(Router)
 
