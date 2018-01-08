@@ -11,9 +11,10 @@
 
 - Vue2：采用最新Vue2的语法
 - Vuex：管理公共组件状态量
+- vue-directive-touch: 多功能手势库
 - vue-router：管理单页面应用路由
 - sass：css预处理语言
-- Webpack：自动化构建工具，主要配置vue-cli脚手架提供。
+- webpack：自动化构建工具，主要配置vue-cli脚手架提供。
 - ES5：采用ES5语法。
 - CSS3：CSS3动画及样式。
 
