@@ -35,7 +35,7 @@ export default {
 		return {
 			boxClass: {
 				enter: false,
-				laeve: false
+				leave: false
 			}
 		}
 	},

@@ -1,13 +1,15 @@
-function MyError( message ) {
+// 自身错误构造函数
+function _LxsError( message ) {
     var instance = new Error( message );
-    instance.name = 'MyError';
+    instance.name = '_Lxs_Error';
     Object.setPrototypeOf( instance, Object.getPrototypeOf( this ) );
     return instance;
 }
  
-MyError.prototype = Object.create( Error.prototype, {
+// 原型继承于Error的原型
+_LxsError.prototype = Object.create( Error.prototype, {
     constructor: {
-        value: MyError,
+        value: _LxsError,
         enumerable: false,
         writable: true,
         configurable: true
@@ -15,9 +17,9 @@ MyError.prototype = Object.create( Error.prototype, {
 });
  
 if ( Object.setPrototypeOf ) {
-    Object.setPrototypeOf( MyError, Error );
+    Object.setPrototypeOf( _LxsError, Error );
 } else {
-    MyError.__proto__ = Error;
+    _LxsError.__proto__ = Error;
 }
  
-export default MyError;
+export default _LxsError;

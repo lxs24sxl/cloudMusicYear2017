@@ -46,7 +46,7 @@ export default {
 		return {
 			boxClass: {
 				enter: false,
-				laeve: false
+				leave: false
 			}
 		}
 	},
@@ -98,7 +98,7 @@ export default {
 				// 当下标为偶数时, 向 临时对象的left属性 添加130-190的值
 				if ( index % 2 ) {
 					tempObj.left = that.getRandom( 130, 190 );
-				// 当下标为奇数时, 向 临时对象的left属性 添加10-50的值
+				// 当下标为奇数时, 向 临时对象 的left属性 添加10-50的值
 				} else {
 					tempObj.left = that.getRandom( 10, 50 );
 				}

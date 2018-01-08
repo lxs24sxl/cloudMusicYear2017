@@ -14,7 +14,8 @@ import mP10 from "@/views/m-p10"
 import mP12 from "@/views/m-p12"
 import mP13 from "@/views/m-p13"
 import mP14 from "@/views/m-p14"
-import video from "@/views/video"
+import mEnding from "@/views/m-ending"
+import video from "@/views/m-video"
 
 Vue.use(Router)
 
@@ -36,6 +37,7 @@ export default new Router({
     { path: '/m-p12', name: "mP12", component: mP12 },
     { path: '/m-p13', name: "mP13", component: mP13 },
     { path: '/m-p14', name: "mP14", component: mP14 },
-    { path: '/video', name: "video", component: video }
+    { path: '/m-ending', name: "mEnding", component: mEnding },
+    { path: '/m-video', name: "video", component: video }
   ]
 })

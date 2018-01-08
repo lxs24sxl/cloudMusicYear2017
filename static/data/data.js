@@ -72,7 +72,7 @@ var data = {
 		"createRadioSubCount": null,
 		"annualArtistId": 5781,
 		"annualArtistName": "薛之谦",
-		"annualArtistImgUrl": "../iamges/common/xzqAvatar.jpg",
+		"annualArtistImgUrl": "../../static/images/common/xzqAvatar.jpg",
 		"annualArtistPlayCount": 121,
 		"annualArtistSongToplist": [{
 			"songId": 468517654,

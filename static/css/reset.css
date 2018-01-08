@@ -23,16 +23,20 @@ html {
  * Remove the margin in all browsers (opinionated).
  */
 
-body {
-  margin: 0;
-}
 body, textarea, input, button, select, keygen, legend {
     font: 14px/1.5 Helvetica, sans-serif, STHeiTi;
     color: #333;
     outline: 0;
 }
+html, body, h1, h2, h3, h4, h5, h6, div, dl, dt, dd, ul, ol, li, p, blockquote, pre, hr, figure, table, caption, th, td, form, fieldset, legend, input, button, textarea, menu {
+    margin: 0;
+    padding: 0;
+}
 i, cite, em, var, address, dfn {
      font-style: normal; 
+}
+li {
+  list-style-type: none;
 }
 /**
  * Add the correct display in IE 9-.

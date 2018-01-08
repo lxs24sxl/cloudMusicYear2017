@@ -1,11 +1,23 @@
 <template>
-    <div class="m-app f-page">
-      <router-view ref="nav" id="nav" v-touch:up.stop="nextPage()" v-touch:down.stop="prevPage()" v-touch:tap.stop="nextPage()"/>
-      <div class="m-btmbar">
-        <a href="javascript:;" class="btn">{{btnTitle}}</a>
+  <div>
+
+    <!-- 如果为非pc端打开,则显示该div -->
+      <div class="m-app f-page" v-if="getOs() != 'windows'">
+        <router-view ref="nav" id="nav" v-touch:up.stop="nextPage()" v-touch:down.stop="prevPage()" v-touch:tap.stop="nextPage( isTap )"/>
+        <div class="m-btmbar">
+          <a href="javascript:;" class="btn">{{btnTitle}}</a>
+        </div>
       </div>
-      <!-- <audio src="../static/01-bgm.mp3" autoplay loop> -->
-    </div>
+
+      <!-- 如果为pc端打开,则显示该div -->
+      <div class="m-web f-page" v-else>
+        <img src="../static/images/web/bg.png" alt="" class="pic">
+      </div>
+
+      <audio ref="music">
+        <source src="../static/01-bgm.mp3" type="audio/mpeg">
+      </audio>
+  </div>
 </template>
 
 <script>
@@ -15,8 +27,9 @@ export default {
     return {
       index: 0,
       timer: null,
-      isTimeOut: true,
+      isTimeOut: true,                   // 是否处于动画暂停状态
       btnTitle: "查看我的年度总结",
+      isTap: true,                       // 是否可点击
       routerList: [
         { index: 1, path: '/', name: 'Cover' },
         { index: 2, path: '/night', name: "Night" },
@@ -32,7 +45,8 @@ export default {
         { index: 12, path: '/m-p12', name: "mP12"},
         { index: 13, path: '/m-p13', name: "mP13"},
         { index: 14, path: '/m-p14', name: "mP14"},
-        { index: 15, path: '/video', name: "video"}
+        { index: 15, path: '/m-ending', name: "mEnding"},
+        { index: 16, path: '/m-video', name: "video"}
       ]
     }
   },
@@ -47,17 +61,22 @@ export default {
     }
   },
   mounted: function () {
+      var video = this.$refs.music;
+      video.load();
+      video.play();
   },
   created: function () {
   },
   methods: {
-    nextPage: function () {
+    nextPage: function ( isTap ) {
       var that = this;
       return function ( event, start, end ) {
         // 记录当前路由
         let index = that.curIndex ;
+        // 当处于倒数第二个页面时，不能点击跳页面
+        that.isTap = ( index > that.routerLen - 2 )? false: true;
         // 当页面不处于最后一个页面、不处于第一个页面时且处于暂停状态
-        if ( index < that.routerLen - 1 && index != 0 && that.isTimeOut ) {
+        if ( index < that.routerLen - 1 && index != 0 && that.isTimeOut && !isTap ) {
           // 下一个路由
           index = that.curIndex + 1;
           // 为本页面路由添加离开动画
@@ -82,6 +101,19 @@ export default {
           that.$store.commit( "_update_curRouter", index );
         } 
       }
+    },
+    // 操作系统类型
+    getOs: function () {
+      var userAgent = 'navigator' in window && 'userAgent' in navigator && navigator.userAgent.toLowerCase() || '';
+      var vendor = 'navigator' in window && 'vendor' in navigator && navigator.vendor.toLowerCase() || '';
+      var appVersion = 'navigator' in window && 'appVersion' in navigator && navigator.appVersion.toLowerCase() || '';
+
+      if (/mac/i.test(appVersion)) return 'MacOSX'
+      if (/win/i.test(appVersion)) return 'windows'
+      if (/linux/i.test(appVersion)) return 'linux'
+      if (/iphone/i.test(userAgent) || /ipad/i.test(userAgent) || /ipod/i.test(userAgent)) 'ios'
+      if (/android/i.test(userAgent)) return 'android'
+      if (/win/i.test(appVersion) && /phone/i.test(userAgent)) return 'windowsPhone'
     }
   },
   watch:{
@@ -144,6 +176,16 @@ export default {
           text-align: center;
           line-height: 45px;
         }
+    }
+}
+.m-web {
+    background: #f1f2f3;
+    .pic {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
     }
 }
 @media (min-height: 724px) {
